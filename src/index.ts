@@ -27,3 +27,15 @@ export function createRejected(error: Error): PromiseRejected {
 export function createFulfilled<T>(result: T): PromiseFulfilled<T> {
     return { status: 'fulfilled', result };
 }
+
+export function isPending(promiseResult: PromiseResult<unknown>): promiseResult is PromisePending {
+    return promiseResult.status === 'pending';
+}
+
+export function isRejected(promiseResult: PromiseResult<unknown>): promiseResult is PromiseRejected {
+    return promiseResult.status === 'rejected';
+}
+
+export function isFulfilled<T>(promiseResult: PromiseResult<T>): promiseResult is PromiseFulfilled<T> {
+    return promiseResult.status === 'fulfilled';
+}
